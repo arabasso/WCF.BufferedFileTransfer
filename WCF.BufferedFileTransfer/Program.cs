@@ -25,7 +25,7 @@ namespace WCF.BufferedFileTransfer
             if (args.Length < 3) return;
 
             var transferClient = args.Length == 4
-                ? new Client.TransferClient(new BasicHttpBinding(), new EndpointAddress($"http://{args[3]}/FileTransferService"))
+                ? new Client.TransferClient(new BasicHttpBinding(), new EndpointAddress($"http://{args[3]}/TransferService"))
                 : new Client.TransferClient();
 
             transferClient.Open();
@@ -56,7 +56,7 @@ namespace WCF.BufferedFileTransfer
         private static void RunService(string[] args)
         {
             var serviceHost = args.Length == 2
-                                ? new ServiceHost(typeof(Service.BufferedTransferService), new Uri($"http://{args[1]}/FileTransferService"))
+                                ? new ServiceHost(typeof(Service.BufferedTransferService), new Uri($"http://{args[1]}/TransferService"))
                                 : new ServiceHost(typeof(Service.BufferedTransferService));
 
             serviceHost.Open();
